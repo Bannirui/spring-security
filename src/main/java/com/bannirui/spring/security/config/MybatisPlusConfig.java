@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.rxy.dal.mapper")
+@MapperScan("com.bannirui.spring.security.dal.mapper")
 public class MybatisPlusConfig {
 
     /**

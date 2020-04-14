@@ -42,3 +42,9 @@ spring:
     pool-prepared-statements: true
     #打开PSCache，并且指定每个连接上PSCache的大小
     max-pool-prepared-statement-per-connection-size: 20
+
+# jwt参数生产环境从jvm传参 安全
+jwt:
+  secret: bannirui
+  expiration: 3600
+  header: JWTHeaderName
