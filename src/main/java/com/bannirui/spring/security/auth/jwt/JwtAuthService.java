@@ -39,6 +39,7 @@ public class JwtAuthService {
             // 对账号密码进行认证
             UsernamePasswordAuthenticationToken usernamePasswordToken = new UsernamePasswordAuthenticationToken(userLoginDto.getUsername(), userLoginDto.getPassword());
             // 执行抛出异常 User is disabled
+            System.out.println(authenticationManager);
             Authentication authentication = authenticationManager.authenticate(usernamePasswordToken);
             System.out.println("=========================测试=========================");
             System.out.println(authentication);

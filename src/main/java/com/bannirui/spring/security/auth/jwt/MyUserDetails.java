@@ -52,8 +52,9 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
+    // 数据库没保存该字段 写死true
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }
