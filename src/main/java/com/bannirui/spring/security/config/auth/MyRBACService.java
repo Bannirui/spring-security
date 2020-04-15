@@ -47,7 +47,7 @@ public class MyRBACService {
                                     .stream().map(RoleMenu::getMenuId).collect(Collectors.toList())))
                     .stream().map(Menu::getUrl).collect(Collectors.toList());
 
-            // 判断该
+            // 判断该用户的路由权限
             return urls.stream().anyMatch(url -> antPathMatcher.match(url,request.getRequestURI()));
 
         }

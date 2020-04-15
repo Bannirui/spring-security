@@ -1,5 +1,6 @@
 package com.bannirui.spring.security.config.auth.jwt;
 
+import com.bannirui.spring.security.config.auth.jwt.JwtAuthService;
 import com.bannirui.spring.security.config.exception.AjaxResponse;
 import com.bannirui.spring.security.config.exception.CustomException;
 import com.bannirui.spring.security.config.exception.CustomExceptionType;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: 路由函数 登录/刷新token
  */
 @RestController
-@RequestMapping("/auth")
+//@RequestMapping("auth")
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class JwtAuthController {
 
@@ -26,8 +27,10 @@ public class JwtAuthController {
      * @param userLoginDto
      * @return
      */
-    @PostMapping("/login")
+    @PostMapping("/authentication")
     public AjaxResponse login(@RequestBody UserLoginDto userLoginDto) {
+        System.out.println("test------------------>");
+        System.out.println(userLoginDto);
         // 前端登录入参校验
         if(StringUtils.isEmpty(userLoginDto.getUsername()) || StringUtils.isEmpty(userLoginDto.getPassword())) {
             return AjaxResponse.error(
