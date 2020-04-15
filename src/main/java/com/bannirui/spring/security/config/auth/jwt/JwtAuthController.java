@@ -7,10 +7,7 @@ import com.bannirui.spring.security.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: dingrui
@@ -22,6 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class JwtAuthController {
 
+    private JwtAuthService jwtAuthService;
+
+    /**
+     * 登录
+     * @param userLoginDto
+     * @return
+     */
     @PostMapping("/login")
     public AjaxResponse login(@RequestBody UserLoginDto userLoginDto) {
         // 前端登录入参校验
@@ -32,5 +36,15 @@ public class JwtAuthController {
         }
 
         // 账号换取token
+        try {
+            return AjaxResponse.success(jwtAuthService.login(userLoginDto));
+        } catch (CustomException e) {
+            return AjaxResponse.error(e);
+        }
+    }
+
+    @GetMapping("/refreshToken")
+    public AjaxResponse refreshToken(@RequestHeader("${jwt.header}") String token) {
+        return AjaxResponse.success(jwtAuthService.refreshToken(token));
     }
 }
